@@ -1,18 +1,42 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2" id="sidebar">
+        <Sidebar @sendCountryData="getData"></Sidebar>
+      </div>
+      <div class="col-md-10 p-5" id="content">
+        <Content :countryData="countryData"></Content>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
+import Sidebar from "../components/Sidebar";
+import Content from "../components/Content";
 export default {
-  name: 'Home',
   components: {
-    HelloWorld
+    Sidebar,
+    Content,
+  },
+  data(){
+    return{
+      countryData : '',
+    }
+  },
+  methods:{
+    getData(data){
+      this.countryData = data
+    }
+  },
+
+};
+</script>
+
+<style lang="scss" scoped>
+.container-fluid {
+  #sidebar {
+    padding: 0;
   }
 }
-</script>
+</style>
